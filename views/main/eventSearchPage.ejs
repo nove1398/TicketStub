@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/head %>
+  <script id="mcjs">
+    ! function (c, h, i, m, p) {
+      m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m, p)
+    }(document, "script",
+      "https://chimpstatic.com/mcjs-connected/js/users/077dff55eb4f72b184ec74a04/f67a8ab8dc1218e19acdf15de.js");
+  </script>
+</head>
+
+<body>
+  <!--HEADER CONTAINER-->
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <!-- END HEADER CONTAINER-->
+
+  <div class="banner-container">
+    <div></div>
+  </div>
+
+  <!-- MAIN CONTAINER FOR BODY -->
+  <div class="main-body-container">
+
+    <div class="main-search-container">
+      <div class="search-container">
+        <input placeholder="Event name to search for" id="event-search-term" value=<%- (search !='undefined' )? search
+          : '' %>>
+        <select id="event-search-location">
+          <option value="">Location</option>
+          <option <%- (location !='undefined' && location=='BS' )? 'selected' : '' %> value="BS">Bahamas</option>
+          <option <%- (location !='undefined' && location=='BB' )? 'selected' : '' %> value="BB">Barbados</option>
+          <option <%- (location !='undefined' && location=='VG' )? 'selected' : '' %> value="VG">British Virgin Islands</option>
+          <option <%- (location !='undefined' && location=='CA' )? 'selected' : '' %> value="CA">Canada</option>
+          <option <%- (location !='undefined' && location=='CI' )? 'selected' : '' %> value="CI">Cayman Islands</option>
+          <option <%- (location !='undefined' && location=='CU' )? 'selected' : '' %> value="CU">Cuba</option>
+          <option <%- (location !='undefined' && location=='DM' )? 'selected' : '' %> value="DM">Dominica</option>
+          <option <%- (location !='undefined' && location=='JM' )? 'selected' : '' %> value="JM">Jamaica</option>
+          <option <%- (location !='undefined' && location=='MX' )? 'selected' : '' %> value="MX">Mexico</option>
+          <option <%- (location !='undefined' && location=='KN' )? 'selected' : '' %> value="KN">St. Kitts & Nevis</option>
+          <option <%- (location !='undefined' && location=='LC' )? 'selected' : '' %> value="LC">St. Lucia</option>
+          <option <%- (location !='undefined' && location=='TC' )? 'selected' : '' %> value="TC">Turks and Caicos
+            Islands</option>
+          <option <%- (location !='undefined' && location=='TT' )? 'selected' : '' %> value="TT">Trinidad & Tobago</option>
+          <option <%- (location !='undefined' && location=='US' )? 'selected' : '' %> value="US">United States of
+            America</option>
+        </select>
+        <div class="btn btn-m" id="search-events">Search</div>
+      </div>
+    </div>
+
+    <!-- EVENT RESULTS-->
+    <div class="event-listing-container">
+      <% for(i=0;i < records.length;i++) { 
+          doc = records[i];%>
+      <div class="event-item-container" data-id=<%=doc._id %> >
+        <a href=<%- "/viewEvent/" +doc._id %>>
+          <img src=<%=doc.eventFlyer? doc.eventFlyer: "/img/black-logo.png" ; %>>
+        </a>
+        <div class="event-price">
+          <span>
+            <%= typeof doc.ticketTypes[0] ==='undefined'?'Free':doc.ticketTypes[0].price %></span>
+        </div>
+        <div class="event-item-body">
+          <div class="event-item-name">
+            <%= doc.eventName %>
+          </div>
+          <div class="event-item-description">
+            <%= doc.eventDescription.length > 150? doc.eventDescription.substring(1, 150) + '...' : doc.eventDescription %>
+          </div>
+          <div class="event-actionbar">
+            <div class="tags">
+              <% for(let k=0;k < doc.eventTags.length; k++){
+                  if(doc.eventTags[k] !== null && doc.eventTags[k].name.length > 0){ %>
+              <span class="event-tag">
+                <%= doc.eventTags[k].name %>
+              </span>
+              <% } } %>
+            </div>
+            <div>
+              <% if (isLoggedIn){ %>
+              <i title="Save flyer" class="fas fa-bookmark bookmark-event" id=<%- doc._id; %>></i>
+              <% } %>
+              <i title="Share flyer" class="fas fa-share-alt share-event">
+                <div id="share-buttons">
+                  <!-- Email -->
+                  <a href="mailto:?Subject=IslandStub Event Share&amp;Body=I%20saw%20this%20and%20thought%20to%20share%20it%20with%20you!%20 https://islandstub.ca/viewEvent/<%= doc._id; %>">
+                    <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email" />
+                  </a>
+                  <!-- Facebook -->
+                  <a href="http://www.facebook.com/sharer.php?u=https://islandstub.ca/viewEvent/<%= doc._id; %>" target="_blank">
+                    <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+                  </a>
+                  <!-- Twitter -->
+                  <a href="https://twitter.com/share?url=https://islandstub.ca/viewEvent/<%= doc._id; %>&text=Check%20out%20this%20event!&hashtags=islandstub,event,islandstub.ca"
+                    target="_blank">
+                    <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
+                  </a>
+                </div>
+              </i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+    <div id="search-event-status">
+
+    </div>
+    <!--END EVENT RESULTS-->
+  </div>
+  <!-- END OF BODY -->
+
+  <!--FOOTER-->
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+  <!--END FOOTER-->
+
+</body>
+
+</html>

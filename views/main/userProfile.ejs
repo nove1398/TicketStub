@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body>
+  <!--HEADER CONTAINER-->
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <!-- END HEADER CONTAINER-->
+
+  <div class="banner-container">
+    <div></div>
+  </div>
+
+  <!-- MAIN CONTAINER FOR BODY -->
+  <div class="main-body-container">
+    <div class="user-profile-container">
+      <section id="details">
+        <h2>
+          <%= client.first + ' ' + client.last %>'s Profile</h2>
+      </section>
+      <section id="purchase-data">
+        <h1>Purchase History</h1>
+        <% if(historyDocs.length < 1) {%>
+        <p>You have not made any purchases just yet.</p>
+        <% } %>
+        <ul class="user-purchase-history">
+          <% for(let i =0;i<historyDocs.length;i++){ 
+                  let doc = historyDocs[i]; %>
+          <li>
+            <div>
+              <div class="user-purchase-event-name">
+                <%= doc.event.eventName %>
+              </div>
+              <div class="user-purchase-date">
+                <%= doc.purchaseDate %>
+              </div>
+            </div>
+            <div class="user-purchase-ticket">
+              <% doc.ticketsBought.forEach(function(element){ %>
+              <span>
+                <%= element.name %></span>
+              <span>
+                <%= element.quantity %></span>
+              <br>
+              <% })%>
+            </div>
+            <div class="user-purchase-total">
+              $<span>
+                <%= doc.ticketSum %></span>
+            </div>
+          </li>
+          <% } %>
+        </ul>
+
+      </section>
+      <section id="saved-events">
+        <h1>Saved Events</h1>
+        <ul>
+          <% for(let i =0;i<savedDocs.length;i++){%>
+          <% if(savedDocs[i].event && savedDocs[i].event.isActive === true){ %>
+          <li>
+            <img src=<%=savedDocs[i].event.eventFlyer %>>
+            <a class="btn btn-flex" href=<%='/viewEvent/' +savedDocs[i].event._id %> title="View Event">
+              <%= savedDocs[i].title %></a>
+            <hr>
+            <div>
+              <a href=<%='/' +savedDocs[i]._id %> title="Remove Event"><i class="fas fa-trash-alt delete-user-bookmark"
+                  id=<%=savedDocs[i].event._id %>></i></a>
+              <a href=<%='/viewEvent/' +savedDocs[i].event._id %> title="View Event"><i class="fas fa-eye"></i></a>
+            </div>
+          </li>
+          <% } } %>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+  <!-- END OF BODY -->
+
+  <!--FOOTER-->
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+  <!--END FOOTER-->
+</body>
+
+</html>

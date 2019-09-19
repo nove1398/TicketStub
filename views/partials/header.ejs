@@ -1,0 +1,69 @@
+  <a href="/home">
+    <div class="logo-container">
+      <img class="logo" src="/img/black-logo.png">
+    </div>
+  </a>
+
+  <div class="minor-header">
+    <div>
+      <a href="/home">Home</a>
+    </div>
+    <% if(isLoggedIn !== true){ %>
+    <div>
+      <a href="#" id="signin-btn">Sign-In</a>
+       <div class="sign-in-global">
+          <ul>
+              <li><span class="floating-login-status"></span></li>
+            <li>Email: <br> <input type="email" autocomplete placeholder="Email"></li>
+            <li>Password: <br> <input type="password" placeholder="Password"></li>
+            <li><a href="/register">New user? register here</a></li>
+            <li><a href="/resetPassword">Forgot password?</a></li>
+            
+            <li><div class="btn btn-flex" id="floating-login">Sign-In</div></li>
+          </ul>
+      </div>
+    </div>
+    <% }else{ %>
+      <div>
+        <a href="/auth/logout">Log out</a>
+    </div>
+      <div>
+          <a href="/profile">My Dashboard</a>
+      </div>
+    <% } %>
+    <div>
+      <a href="/creator">Create Event</a>
+    </div>
+    <div>
+      <a href="/aboutUs">About Us</a>
+    </div>
+    <div>
+      <a href="/contactUs">Contact-Us</a>
+    </div>   
+  </div>
+    
+    <div class="mobile-navbar">      
+          <input type="checkbox" name="toggle" id="toggle">
+        <label for="toggle" class="lines-box">       
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </label>
+
+        <div class="sidebar-nav">
+          <ul>
+              <li><a href="/home">Home</a></li>
+              <% if(isLoggedIn !== true){ %>
+                <li><a href="/loginuser">Sign-In</a></li>
+              <% } else{ %>
+                <li><a href="/auth/logout">Log out</a></li>
+                <li><a href="/profile">My Dashboard</a></li>
+              <% } %>
+           
+            <li><a href="/creator">Create Event</a></li>
+            <li><a href="/aboutUs">About Us</a></li>
+            <li><a href="/contactUs">Contact Us</a></li>
+          </ul>
+        </div>
+  </div>
+   

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body>
+  <!--HEADER CONTAINER-->
+   <header>
+    <% include ../partials/header %>
+  </header>
+  <!-- END HEADER CONTAINER-->
+
+  <div class="banner-container">
+    <div></div>
+  </div>
+
+  <!-- MAIN CONTAINER FOR BODY -->
+  <div class="main-body-container">
+    <div class="contact-container">
+      <h2>Check Ticket Orders</h2>
+      <br>
+      <a href="/profile" class="seller-banking-update" >Dashboard</a>
+      <br>
+      <br>
+      <div class="order-check-section">
+        <input type='text' onkeyup="readOrder(this,event);" onkeydown="readOrder(this,event);" placeholder="Order number"/>
+        <div class="btn btn-m" onclick="searchOrder(this)">Search</div>
+      </div>
+      
+    <div id="result"></div>
+    
+    </div>   
+  </div>
+  <!-- END OF BODY -->
+
+  <!--FOOTER-->
+  <footer>
+      <% include ../partials/footer %>
+  </footer>
+  <script>
+      var _scannerIsRunning = false;
+      function readOrder(_this,event){
+          if(_this.value.length < 16){
+              if(_this.value.length == 4 && event.which !== 8)
+                    _this.value = _this.value + '-';
+              if(_this.value.length == 11 && event.which !== 8)
+                    _this.value = _this.value + '-';
+            return;
+          } 
+
+          if(_this.value.length > 16){
+            _this.value = _this.value.substring(0,16);
+              return;
+          }
+
+          if(event.which === 13){
+              searchOrder(_this);
+          }
+
+      }
+
+
+      function searchOrder(_this){
+        let data = {order: _this.value}
+          fetch('/api/checkorder',
+                {
+                    body: JSON.stringify(data), // must match 'Content-Type' header
+                    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                    credentials: 'same-origin', // include, same-origin, *omit
+                    headers: {
+                      'user-agent': 'Mozilla/4.0',
+                      'X-Requested-With': 'XMLHttpRequest',
+                      'content-type': 'application/json'
+                    },
+                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                    mode: 'cors', // no-cors, cors, *same-origin
+                    redirect: 'error', // manual, *follow, error
+                    referrer: 'no-referrer', // *client, no-referrer
+                  })
+                  .then(response => {return response.json()})
+                  .then((response)=>{
+                    console.log(response);
+                    document.getElementById('result').innerHTML = `<div>${response.user.name.first + ' ' + response.user.name.last}</div>
+                                                                    <div>${response.event.eventName}</div>`;
+                   })
+                  .catch((err)=>{console.log(err)});
+      }
+
+  
+//   if (navigator.mediaDevices && typeof navigator.mediaDevices.getUserMedia === 'function') {
+//       alert('API WORKS');
+//   }else{
+//     alert('API NOT FOUND');
+//   }
+
+    //   navigator.getUserMedia = (navigator.getUserMedia ||
+    //                         navigator.webkitGetUserMedia ||
+    //                         navigator.mozGetUserMedia || 
+    //                         navigator.msGetUserMedia );
+
+    //   function startScanner() {
+
+    //       Quagga.init({
+    //           numOfWorkers: navigator.hardwareConcurrency,
+    //           inputStream: {
+    //               name: "Live",
+    //               type: "LiveStream",
+    //               target: document.querySelector('#scanner-container'),
+    //               constraints: {
+    //                   width: 320,
+    //                   height: 320,
+    //                   facingMode: "environment"
+    //               },
+    //           },
+    //           locate: true,
+    //           decoder: {
+    //               readers: [
+    //               "code_128_reader"
+                        
+    //               ],
+    //               debug: false
+    //           },
+
+    //       }, function (err) {
+    //           if (err) {
+    //               console.log(err);
+    //               alert(err.message);
+    //               return;
+    //           }
+
+    //           console.log("Initialization finished. Ready to start");
+    //           Quagga.start();
+
+    //           // Set flag to is running
+    //           _scannerIsRunning = true;
+    //       });
+
+    //       Quagga.onProcessed(function (result) {
+    //           var drawingCtx = Quagga.canvas.ctx.overlay,
+    //           drawingCanvas = Quagga.canvas.dom.overlay;
+
+    //           if (result) {
+    //               if (result.boxes) {
+    //                   drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
+    //                   result.boxes.filter(function (box) {
+    //                       return box !== result.box;
+    //                   }).forEach(function (box) {
+    //                       Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, { color: "green", lineWidth: 2 });
+    //                   });
+    //               }
+
+    //               if (result.box) {
+    //                   Quagga.ImageDebug.drawPath(result.box, { x: 0, y: 1 }, drawingCtx, { color: "#00F", lineWidth: 2 });
+    //               }
+
+    //               if (result.codeResult && result.codeResult.code) {
+    //                   Quagga.ImageDebug.drawPath(result.line, { x: 'x', y: 'y' }, drawingCtx, { color: 'red', lineWidth: 3 });
+    //               }
+    //           }
+    //       });
+
+
+    //       Quagga.onDetected(function (result) {
+    //         alert(result.codeResult.code);
+    //           console.log("Barcode detected and processed : [" + result.codeResult.code + "]", result);
+    //       });
+    //   }
+
+
+    //   // Start/stop scanner
+    //   document.getElementById("btn").addEventListener("click", function () {
+    //       if (_scannerIsRunning) {
+    //           Quagga.stop();
+    //           _scannerIsRunning = false;
+    //       } else {
+    //           startScanner();
+    //       }
+    //   }, false);
+  </script>
+
+  <!--END FOOTER-->
+ </body>
+</html>

@@ -1,0 +1,284 @@
+.components-modal-background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    display: none;
+}
+
+.disable-touch-feedback {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+}
+
+/** ALERT **/
+.components-alert-container {
+    max-width: 100%;
+    min-width: 350px;
+    width: 480px;
+    min-height: 150px;
+    border-radius: 5px;
+    background: rgb(235, 235, 235);
+    box-shadow: 0 5px 5px rgb(0, 0, 0, 0.1);
+    display: flex;
+    overflow-x: hidden;
+    flex-direction: column;
+    color: #fff;
+    font-family: 'arial', helvetica;
+    position: fixed;
+    z-index: 10000;
+    left: calc(-50vw + 50%);
+    right: calc(-50vw + 50%);
+    top: calc(50vh - 85px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.components-alert-container.show {
+    animation: showAlert .5s both;
+}
+
+.components-alert-container.hide {
+    animation: hideAlert .5s both;
+}
+
+.components-alert-body {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.components-alert-container h2 {
+    text-transform: capitalize;
+    margin: 0;
+    padding: 0.3em;
+    text-align: center;
+    font-size: 2.4em;
+    font-weight: 300;
+    opacity: 0.8;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px 3px 0 0;
+
+}
+
+.components-alert-container p {
+    align-self: start;
+    padding: 5px 10px;
+}
+
+.components-alert-container button {
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    padding: 8px 15px;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    background: rgb(0, 0, 0, 0.3);
+    margin: 10px 0px;
+}
+
+.components-alert-container button:hover {
+    background: rgb(0, 0, 0, 0.5);
+}
+
+.components-alert-container.invalid {
+    background: #e74c3c;
+}
+
+.components-alert-container.success {
+    background: #35b084;
+}
+
+.components-alert-container.info {
+    background: #3498db;
+}
+
+.components-alert-container.warning {
+    background: #f1c40f;
+}
+
+/** MODAL **/
+.components-modal-container {
+    position: absolute;
+    width: 100%;
+    max-width: 650px;
+    min-height: 200px;
+    border-radius: 8px;
+    background: #F8F7FA;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    transform: scale(0);
+    color: #4B4D63;
+    font-family: Roboto, Helvetica Neue, Helvetica, Tahoma, Arial, sans-serif;
+}
+
+.components-modal-container.show {
+    animation: showAlert .5s both;
+}
+
+.components-modal-container.hide {
+    animation: hideAlert .5s both;
+}
+
+.components-modal-body {
+    flex: 1;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.components-modal-controls {
+    max-width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 15px;
+    justify-self: flex-end;
+}
+
+.components-modal-controls>button {
+    margin-left: 10px;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid #ccc;
+    padding: 10px 16px;
+    border-radius: 5px;
+    background: transparent;
+    transition: .3s;
+}
+
+.components-modal-controls>button:hover {
+    background: #ccc;
+    color: #fff;
+}
+
+.components-modal-footer {
+    padding: 5px;
+    display: flex;
+    align-self: flex-start;
+    justify-content: space-between;
+    width: 50%;
+    color: #bdc3c7;
+}
+
+.components-modal-header {
+    color: #444;
+    background: #EEEDF2;
+    text-transform: capitalize;
+    text-align: center;
+    padding: 10px 15px;
+    margin: 0px;
+    box-shadow: 0 1px 1px 0 rgba(30, 10, 60, .15);
+}
+
+.component-ticket {
+    border-left: 10px solid #444;
+    padding: 15px;
+    border-radius: 3px;
+    margin: 5px 12px;
+    display: flex;
+    min-width: 250px;
+    letter-spacing: 0.08em;
+    justify-content: space-between;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    box-shadow: 0 1px 1px 0 rgba(30, 10, 60, .15);
+}
+
+.component-ticket>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.component-ticket>div>span small {
+    color: #95a5a6;
+}
+
+.component-ticket-description {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.7em;
+}
+
+.component-ticket-name {
+    text-transform: capitalize;
+}
+
+.component-ticket-name>span {
+    text-transform: uppercase;
+}
+
+.component-ticket select {
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.checkout-price>span {
+    text-transform: uppercase;
+}
+
+/** LOADER **/
+/** ANIMATIONS **/
+@keyframes showAlert {
+    0% {
+        transform: scale(1);
+    }
+
+    1% {
+        transform: scale(0.5);
+    }
+
+    45% {
+        transform: scale(1.05);
+    }
+
+    80% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes hideAlert {
+    0% {
+        transform: scale(1);
+    }
+
+    1% {
+        transform: scale(0.95);
+    }
+
+    45% {
+        transform: scale(0.5);
+    }
+
+    80% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}

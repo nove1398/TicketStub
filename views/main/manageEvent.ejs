@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body>
+  <!--HEADER CONTAINER-->
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <!-- END HEADER CONTAINER-->
+
+  <div class="banner-container">
+    <div></div>
+  </div>
+
+  <!-- MAIN CONTAINER FOR BODY -->
+  <div class="main-body-container">
+    <div class="manage-event-container">
+      <h2>View Event</h2>
+      <div class="manage-event-inner">
+        <div class="manage-event-menu">
+          <ul class="manage-event-nav">
+            <li>Navigation</li>
+            <li><a href="/profile"><i class="fas fa-arrow-left"></i>Dashboard</a></li>
+          </ul>
+        </div>
+        <div class="manage-event-section">
+          <section>
+            <h3 class="event-creator-title">Event Data</h3>
+            <p class="sub-header">
+              <%= eventDoc.eventName %>
+            </p>
+            <p class="manage-event-details">
+              <%- eventDoc.eventDescription %>
+            </p>
+          </section>
+          <section>
+            <h3 class="event-creator-title">Event Analytics</h3>
+            <ul>
+              <li><strong>Created date</strong> </li>
+              <li>
+                <%= eventDoc.fixedDate || 0 %>
+              </li>
+              <li><strong>Total tickets sold</strong></li>
+              <li>
+                <%= totalSales %>
+              </li>
+              <li><strong>Event views</strong></li>
+              <li>
+                <%= eventDoc.eventViews || 0 %>
+              </li>
+              <li><strong>Last viewed</strong></li>
+              <li>
+                <%= !eventDoc.lastViewed||typeof eventDoc.lastViewed =='undefined'? '- -' : eventDoc.lastViewed %>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3 class="event-creator-title">Sales By Ticket Type</h3>
+            <ul>
+              <%  Object.keys(ticketSales).forEach(function(key){ %>
+              <li>
+                <%- '<strong>' + key + '</strong> - ' + ticketSales[key] %>
+              </li>
+              <% }) %>
+            </ul>
+          </section>
+          <section>
+            <h3 class="event-creator-title">RSVP</h3>
+            <ul class="manage-rsvp-container">
+              <%  rsvpDocs.forEach(function(key,index){ %>
+              <li>
+                <div class="manage-rsvp-title">
+                  <%- rsvpDocs[index].event.eventName %>
+                </div>
+                <div class="manage-rsvp-date">
+                  (
+                  <%- rsvpDocs[index].date %> )
+                </div>
+
+                <div class="manage-rsvp-name">
+                  <%- rsvpDocs[index].user.name.full %>
+                </div>
+              </li>
+              <% }) %>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END OF BODY -->
+
+  <!--FOOTER-->
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+  <!--END FOOTER-->
+</body>
+
+</html>

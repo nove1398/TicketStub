@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head %>
+    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/077dff55eb4f72b184ec74a04/f67a8ab8dc1218e19acdf15de.js");</script>
+</head>
+
+<body>
+  <!--HEADER CONTAINER-->
+  <header>
+    <% include ../partials/header %>
+    
+  </header>
+  <!-- END HEADER CONTAINER-->
+
+  <div class="banner-container">
+    <div></div>
+  </div>
+
+  <!-- MAIN CONTAINER FOR BODY -->
+  <div class="main-body-container">
+    <div class="login-page-container">
+        <h2><%= typeof msg!=='undefined'? msg : 'Login' %></h2>
+        <p><%= typeof subMsg!=='undefined'? subMsg : '' %></p>
+      <div>
+        <input type="email" placeholder="Email" id="username">
+        <input type="password" placeholder="Password" id="password">
+      </div>
+      <p><a href="/resetPassword">Forgot password?</a></p>
+      <p>No account? <a href="/register">Register here</a></p>
+      <div class="btn btn-l" id="submit-login">Login</div>
+    </div>
+  </div>
+  <!-- END OF BODY -->
+
+  <!--FOOTER-->
+  <footer>
+        <% include ../partials/footer %>
+  </footer>
+  <!--END FOOTER-->
+  
+</body>
+
+</html>

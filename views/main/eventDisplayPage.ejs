@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/head %>
+
+</head>
+
+<body>
+  <!--HEADER CONTAINER-->
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <!-- END HEADER CONTAINER-->
+
+  <div class="banner-container">
+    <div></div>
+  </div>
+
+  <!-- MAIN CONTAINER FOR BODY -->
+  <div class="main-body-container">
+    <div class="event-preview-container">
+
+      <div class="section1">
+        <span></span>
+        <img id="event-preview-image" src=<%=doc.eventFlyer %> >
+      </div>
+      <div class="section2">
+        <div>
+          <span>
+            <%= doc.eventDate.month.substring(0,3) %></span>
+          <hr>
+          <span>
+            <%= doc.eventDate.day %></span>
+        </div>
+        <div>
+          <%= doc.eventName %>
+          <span>organized by
+            <%= doc.organizerName %></span>
+        </div>
+        
+        <div>
+          <!--TICKET SECTION-->
+          <% doc.ticketTypes.forEach(function(element){
+              let now = new Date().getTime();
+              let saleStart = new Date(+element.saleStart).getTime();
+              let saleEnd = new Date(+element.saleEnd).getTime();
+              var saleStarted = now >= saleStart;
+              var saleEnded = now >= saleEnd;
+              %>
+              <span>
+                <%= element.name %>
+                <%= doc.ticketCurrency.toUpperCase() %>
+                <%= '$' + element.price %>
+              </span>
+              <br>
+          <% }) %>
+          <!--END TICKET SECTION-->
+          <div class="event-ticket-actions">
+            <!--PURCHASE TICKETS-->
+            <% if(doc.ticketTypes.length >= 1 ){%>
+              <button class="btn btn-l" id="purch-tickets"> Buy tickets</button>
+            <% } %>
+            <!--END PURCHASE TICKETS-->
+            <!--RSVP-->
+            <% if(doc.isRsvpEnabled === true){ %>
+                <button class="btn btn-l" id="rsvp-tickets" <%=(doc.rsvpCount < 1)? 'disabled' : '' %>>RSVP</button>
+                <span>
+                  <small>
+                    <%=(doc.rsvpCount < 1)? 'RSVP tickets are all gone' : '' %>
+                  </small>
+                </span>
+                <div id='rsvp-email' isOpen='false' data-id="<%= doc._id %>">
+                  <input type='email' placeholder="Email to rsvp">
+                  <button class="btn btn-m" id="rsvp-submit">RSVP</button>
+                </div>
+            <% } %>
+            <!--END RSVP-->
+          </div>
+
+        </div>
+        
+      </div>
+      <div class="section3">
+        <div>
+          <%- doc.eventDescription %>
+        </div>
+        <span class="event-preview-title">Tags</span>
+        <div class="tags">
+          <% for(k=0;k < doc.eventTags.length; k++){ 
+            if(doc.eventTags[k]){ %>
+          <span class="event-tag">
+            <%= doc.eventTags[k].name %>
+          </span>
+          <% } } %>
+        </div>
+      </div>
+      <div class="section4">
+        <span class="event-preview-title">Date and Time</span>
+        <p>
+          <%= doc.eventDate.month + ' ' + doc.eventDate.day + ', ' + doc.eventDate.year + ' @' + doc.eventTime.start.time + doc.eventTime.start.timeOfDay %>
+          to
+          <%= doc.eventTime.end.time + doc.eventTime.end.timeOfDay %>
+        </p>
+        <span class="event-preview-title">Location </span>
+        
+        <p>
+          <%=  doc.eventAddress.address + ', ' + doc.eventAddress.city + ',' + doc.eventAddress.state + ',' + doc.eventAddress.zip %>
+        </p>
+        <span class="event-preview-title">Refund Policy</span>
+        <p>No refund</p>
+      </div>
+    </div>
+  </div>
+  <!-- END OF BODY -->
+
+  <!--FOOTER-->
+  <footer>
+    <% include ../partials/footer  %>
+  </footer>
+  <!--END FOOTER-->
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+
+</body>
+
+</html>

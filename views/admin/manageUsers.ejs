@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <% include ../partials/adminHeader %>
+</head>
+<body>
+    <!-- NAVBAR TOP-->
+    <header class="admin-header-nav">
+        <div><i class="fas fa-home"></i><a href="/admins">  IslandStub Admin</a></div>
+        <div>
+            <ul>
+                <li><i class="far fa-user-circle"></i></li>
+                <li><%= userName.first + ' ' + userName.last%></li>
+               
+            </ul>
+        </div>
+    </header>
+    <div class="admin-body-container">
+        <!-- MAIN BODY-->
+        <section class="admin-manage-users-container">
+                    <div class="admin-info-container">
+                        <div class="admin-info-title">User Statistics</div>
+                        <div class="admin-info-body">
+                            <p>Total Users: <%= totalUsers %></p>
+                            <p>Active Users: <%= activeUsers %></p>
+                            <p>Disabled Users: <%= totalUsers - activeUsers %></p>
+                            
+                        </div>
+                    </div>
+                    <div class="admin-info-container">
+                            <div class="admin-info-title">User Management</div>
+                            <div class="admin-info-body">
+                                <input id="user-search-box" placeholder="Search for user name">
+                                <div class="user-search-box"></div>
+                            </div>
+                        </div>
+        </section>
+            <!-- SIDE NAVBAR-->
+            <input type="checkbox" name="toggle" id="toggle">
+            <section class="admin-side-nav">
+                    <label for="toggle">
+                        <span></span>
+                        <span></span>
+                    </label>
+                    <div class="admin-side-nav-title">Navigation</div>
+                    <% include ../partials/adminNav %>
+            </section>
+         
+    </div>
+    <!-- POPUP WINDOW -->
+    <div class="admin-popup-container">
+        <span id="close-admin-popup"><i class="fas fa-times fa-2x"></i></span>
+        <div>
+            <div class="user-payment-info"></div>
+        </div>
+    </div>
+</body>
+</html>

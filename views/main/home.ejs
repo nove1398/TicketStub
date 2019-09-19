@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/head %>
+  <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/077dff55eb4f72b184ec74a04/edb915d326c3c63713633dc58.js");</script>
+</head>
+
+<body>
+  <!--HEADER CONTAINER-->
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <!-- END HEADER CONTAINER-->
+
+  <div class="banner-container">
+    <div></div>
+  </div>
+
+  <!-- MAIN CONTAINER FOR BODY -->
+  <div class="main-body-container">
+
+    <div class="main-search-container">
+      <div class="search-container">
+        <input type="text" placeholder="Search events" id="home-event-name">
+        <select id="home-event-location">
+          <option value="">Location</option>
+          <option value="BS">Bahamas</option>
+          <option value="BB">Barbados</option>
+          <option value="VG">British Virgin Islands</option>
+          <option value="CA">Canada</option>
+          <option value="CI">Cayman Islands</option>
+          <option value="CU">Cuba</option>
+          <option value="DM">Dominica</option>
+          <option value="JM">Jamaica</option>
+          <option value="MX">Mexico</option>
+          <option value="KN"> St. Kitts & Nevis</option>
+          <option value="LC">St. Lucia</option>
+          <option value="TC">Turks and Caicos Islands</option>
+          <option value="TT">Trinidad & Tobago</option>
+          <option value="US">United States of America</option>
+        </select>
+        <div class="btn btn-m" id="home-search-btn">Search</div>
+      </div>
+    </div>
+
+    <!-- EVENT RESULTS-->
+    <div class="event-listing-container">
+      <% for(i=0;i < docCount;i++) { 
+            doc = records[i];
+            descriptionText = doc.eventDescription.length > 120? doc.eventDescription.replace(/(<([^>]+)>)/ig,'').substring(1,100) + '...' : doc.eventDescription.replace(/(<([^>]+)>)/ig,'')
+            %>
+            <div class="event-item-container">
+              <a href=<%- "/viewEvent/" +doc._id %>>
+                <img src=<%=doc.eventFlyer? doc.eventFlyer: "/img/black-logo.png" ; %>>
+              </a>
+              <div class="event-price">
+                <span>
+                  $
+                  <%= typeof doc.ticketTypes[0] ==='undefined'?'Free':doc.ticketTypes[0].price %>
+                </span>
+              </div>
+              <div class="event-item-body">
+                <div class="event-item-name">
+                  <%= doc.eventName %>
+                </div>
+                <div class="event-item-description">
+                  <div><%- descriptionText %></div>
+                </div>
+                <div class="event-actionbar">
+                  <div class="tags">
+                    <% for(let k=0;k < doc.eventTags.length; k++){
+                      if(doc.eventTags[k] !== null && doc.eventTags[k].name.length > 0){ %>
+                        <span class="event-tag">
+                          <%= doc.eventTags[k].name %>
+                        </span>
+                      <% } 
+                    } %>
+                  </div>
+                  <div>
+                    <% if (isLoggedIn){ %>
+                    <i title="Save flyer" class="fas fa-bookmark bookmark-event" id=<%- doc._id; %>></i>
+                    <% } %>
+                    <i title="Share flyer" class="fas fa-share-alt share-event">
+                      <div id="share-buttons">
+                        <!-- Email -->
+                        <a href="mailto:?Subject=IslandStub Event Share&amp;Body=I%20saw%20this%20and%20thought%20to%20share%20it%20with%20you!%20 https://islandstub.ca/viewEvent/<%= doc._id; %>">
+                          <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email" />
+                        </a>
+                        <!-- Facebook -->
+                        <a href="http://www.facebook.com/sharer.php?u=https://islandstub.ca/viewEvent/<%= doc._id; %>" target="_blank">
+                          <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+                        </a>
+                        <!-- Twitter -->
+                        <a href="https://twitter.com/share?url=https://islandstub.ca/viewEvent/<%= doc._id; %>&text=Check%20out%20this%20event!&hashtags=islandstub,event,islandstub.ca"
+                          target="_blank">
+                          <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
+                        </a>
+                      </div>
+                    </i>
+                  </div>
+                </div>
+              </div>
+            </div>
+      <% } %>
+
+    </div>
+    <!--END EVENT RESULTS-->
+
+    <div id="view-full-events" class="btn btn-l"><a href="/search">See More</a></div>
+  </div>
+  <!-- END OF BODY -->
+
+  <!--FOOTER-->
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+  <!--END FOOTER-->
+
+</body>
+
+</html>

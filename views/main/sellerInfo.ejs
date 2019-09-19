@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body>
+    <!--HEADER CONTAINER-->
+    <header>
+        <% include ../partials/header %>
+    </header>
+    <!-- END HEADER CONTAINER-->
+
+    <div class="banner-container">
+        <div></div>
+    </div>
+
+    <!-- MAIN CONTAINER FOR BODY -->
+    <div class="main-body-container">
+        <div class="profile-container">
+            <div>
+                <h2>Update Payment Information</h2>
+
+            </div>
+            <div>
+                <br> <br>
+                <a href="/profile" class="seller-banking-update">Back to dashboard</a>
+                <br> <br>
+                <h3>Canadian Accounts</h3>
+                <label>Institution number</label>
+                <input type="text" id="inst-num" placeholder="" value=<%=banking.payment.institutionNumber %>>
+                <br>
+                <br>
+                <label>Transit or branch number</label>
+                <input type="text" id="branch-num" placeholder="" value=<%=banking.payment.branchNumber %>>
+                <br>
+                <br>
+                <label>Account number</label>
+                <input type="text" id="acc-num" placeholder="" value=<%=banking.payment.accountNumber %>>
+                <br>
+                <br>
+                <label>Bank name</label>
+                <input type="text" id="bank-name" placeholder="" value=<%=banking.payment.bankName %>>
+                <br>
+                <br>
+                <label>Name of business or account holder</label>
+                <input type="text" id="account-holder" placeholder="" value=<%=banking.payment.accountName %>>
+                <br>
+                <br>
+                <br>
+                <h3>US/Caribbean Accounts</h3>
+                <input type="email" id="pp-mail" placeholder="Email associated with paypal" value=<%=banking.payment.paypalEmail
+                    %>>
+                <br>
+                <br>
+                <div class="btn btn-l" id="update-seller-bank">Update</div>
+            </div>
+        </div>
+    </div>
+    <!-- END OF BODY -->
+
+    <!--FOOTER-->
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+    <!--END FOOTER-->
+</body>
+
+</html>

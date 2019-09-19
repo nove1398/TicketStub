@@ -1,0 +1,214 @@
+.wysg-calendar-container {
+    border-radius: 10px;
+    border: 2px solid #e1e1e1;
+    max-width: 400px;
+    min-width: 400px;
+    min-height: 250px;
+    max-height: max-content;
+    overflow: hidden;
+    color: #8A8A8A;
+    font-size: 11pt;
+    background: #fff;
+    font-family: Roboto, Helvetica Neue, Helvetica, Tahoma, Arial, sans-serif;
+}
+
+.wysg-calendar-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 19px;
+    background: #00b894;
+    color: #fff;
+    flex: 0 1 auto;
+    border-bottom: 1px solid #ccc;
+}
+
+.wysg-calendar-header>span {
+    display: block;
+    cursor: pointer;
+    padding: 5px;
+    color: #FFF;
+}
+
+.wysg-calendar-weekdays {
+    list-style: none;
+    display: grid;
+    font-weight: bold;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 0px;
+}
+
+.wysg-calendar-weekdays>li {
+    justify-self: center;
+}
+
+.wysg-calendar-body {
+    padding: 0px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 40px);
+    margin-bottom: 35px;
+}
+
+.wysg-calendar-body>.days {
+    list-style: none;
+    cursor: pointer;
+    align-self: center;
+    justify-self: center;
+    min-width: 12px;
+}
+
+.wysg-calendar-body>.days.active {
+    background: #FF6E40;
+    padding: 5px;
+    border-radius: 50%;
+    min-width: 15px;
+    text-align: center;
+    color: #fff;
+}
+
+.wysg-calendar-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 65px;
+}
+
+.wysg-calendar-time-container {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.wysg-calendar-time-preview-container {
+    margin-top: 15px;
+}
+
+.wysg-calendar-controls button:nth-child(1) {
+    margin-right: 10px;
+    padding: 10px;
+    background: transparent;
+    outline: none;
+    border: none;
+    color: #00b894;
+    cursor: pointer;
+    font-size: 12pt;
+}
+
+.wysg-calendar-controls button:nth-child(2) {
+    margin-right: 10px;
+    padding: 10px;
+    background: #00b894;
+    outline: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.wysg-calendar-time-slider {
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-appearance: none;
+    /* Hides the slider so that custom slider can be made */
+    width: 70%;
+    /* Specific width is required for Firefox. */
+    background: transparent;
+    /* Otherwise white in Chrome */
+    outline: none;
+    position: relative;
+    border: none !important;
+}
+
+.wysg-calendar-time-slider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    background: #00b894;
+    border-radius: 10px;
+}
+
+.wysg-calendar-time-slider::-ms-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    background: #00b894;
+    border-radius: 10px;
+}
+
+.wysg-calendar-time-slider::-webkit-slider-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #FF6E40;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -5px;
+    position: relative;
+}
+
+.wysg-calendar-time-slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.wysg-calendar-time-slider::-moz-range-thumb::after {
+    content: attr(data-tip);
+    position: absolute;
+    display: block;
+    top: -10px;
+    left: 0px;
+    width: 10px;
+    height: 10px;
+    background: black;
+}
+
+.wysg-calendar-time-slider.hours {}
+
+.wysg-calendar-midday-marker {
+    font-size: 0.8em;
+    color: #d1d1d1;
+    display: block;
+    margin-top: 5px;
+}
+
+.wysg-calendar-minute-marker {
+    font-size: 0.8em;
+    color: #d1d1d1;
+    display: block;
+    margin-top: 8px;
+    margin-left: 18px;
+}
+
+.wysg-calendar-time-slider.hours::after {
+    content: 'PM';
+    position: absolute;
+    left: 102%;
+    top: -8px;
+}
+
+.wysg-calendar-time-slider.hours::before {
+    content: 'AM';
+    position: absolute;
+    left: -15px;
+    transform: translate(-50%);
+    top: -8px;
+}
+
+.wysg-calendar-time-slider.minutes::after {
+    content: '55';
+    position: absolute;
+    left: 102%;
+    top: -8px;
+}
+
+.wysg-calendar-time-slider.minutes::before {
+    content: '00';
+    position: absolute;
+    left: -20px;
+    top: -8px;
+}

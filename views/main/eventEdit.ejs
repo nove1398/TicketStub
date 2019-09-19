@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body>
+  <!--HEADER CONTAINER-->
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <!-- END HEADER CONTAINER-->
+
+  <div class="banner-container">
+    <div></div>
+  </div>
+
+  <!-- MAIN CONTAINER FOR BODY -->
+  <div class="main-body-container">
+    <div class="event-create-container" data-id=<%=data._id %>
+      <div>
+        <h2>Update An Event</h2>
+        <div id="creation-errors"></div>
+        <br>
+        <a href="/profile" class="seller-banking-update">Back to dashboard</a>
+        <br>
+        <div class="event-creator-title">Event Basics</div>
+        <input type="text" placeholder="Name of event" id="event-name" value="<%= data.eventName %>">
+        <input type="text" placeholder="Organizer Name" id="event-organizer-name" value="<%= data.organizerName %>">
+        <div class="event-creator-title">Event Description</div>
+        <div id="event-description">
+          <%- data.eventDescription %>
+        </div>
+        <div class="event-creator-title">Location</div>
+        <div>
+          <select id="event-country">
+            <option value="">Select Country</option>
+            <option value="BS" <%=data.eventCountry=='BS' ? 'selected' : '' %> >Bahamas</option>
+            <option value="BB" <%=data.eventCountry=='BB' ? 'selected' : '' %> >Barbados</option>
+            <option value="VG" <%=data.eventCountry=='VG' ? 'selected' : '' %> >British Virgin Islands</option>
+            <option value="CA" <%=data.eventCountry=='CA' ? 'selected' : '' %> >Canada</option>
+            <option value="CI" <%=data.eventCountry=='CI' ? 'selected' : '' %> >Cayman Islands</option>
+            <option value="CU" <%=data.eventCountry=='CU' ? 'selected' : '' %> >Cuba</option>
+            <option value="DM" <%=data.eventCountry=='DM' ? 'selected' : '' %> >Dominica</option>
+            <option value="JM" <%=data.eventCountry=='JM' ? 'selected' : '' %> >Jamaica</option>
+            <option value="MX" <%=data.eventCountry=='MX' ? 'selected' : '' %> >Mexico</option>
+            <option value="KN" <%=data.eventCountry=='KN' ? 'selected' : '' %> >St. Kitts & Nevis</option>
+            <option value="LC" <%=data.eventCountry=='LC' ? 'selected' : '' %> >St. Lucia</option>
+            <option value="TC" <%=data.eventCountry=='TC' ? 'selected' : '' %> >Turks and Caicos Islands</option>
+            <option value="TT" <%=data.eventCountry=='TT' ? 'selected' : '' %> >Trinidad & Tobago</option>
+            <option value="US" <%=data.eventCountry=='US' ? 'selected' : '' %> >United States of America</option>
+          </select>
+        </div>
+
+        <input type="text" placeholder="Event venu/building name" id="event-venue-name" value="<%= data.eventVenueName %>">
+        <input type="text" placeholder="Address" id="event-address1" value="<%= data.eventAddress.address %>">
+        <input type="text" placeholder="State" id="state" value="<%= data.eventAddress.state %>">
+        <input type="text" placeholder="Zip/Postal code" id="zipcode" value="<%= data.eventAddress.zip %>">
+        <input type="text" placeholder="City" id="event-city" value="<%= data.eventAddress.city %>">
+        <!--EVENT TIME SECTION-->
+        <div class="event-time-settings">
+          <div>
+            <div class="event-creator-title">Event Date</div>
+            <select name="event-month" id="event-month">
+              <option value="january" <%=data.eventDate.month=='january' ? 'selected' : '' %> >JAN</option>
+              <option value="february" <%=data.eventDate.month=='february' ? 'selected' : '' %>>FEB</option>
+              <option value="march" <%=data.eventDate.month=='march' ? 'selected' : '' %>>MAR</option>
+              <option value="april" <%=data.eventDate.month=='april' ? 'selected' : '' %>>APR</option>
+              <option value="may" <%=data.eventDate.month=='may' ? 'selected' : '' %>>MAY</option>
+              <option value="june" <%=data.eventDate.month=='june' ? 'selected' : '' %>>JUN</option>
+              <option value="july" <%=data.eventDate.month=='july' ? 'selected' : '' %>>JUL</option>
+              <option value="august" <%=data.eventDate.month=='august' ? 'selected' : '' %>>AUG</option>
+              <option value="september" <%=data.eventDate.month=='september' ? 'selected' : '' %>>SEP</option>
+              <option value="october" <%=data.eventDate.month=='october' ? 'selected' : '' %>>OCT</option>
+              <option value="november" <%=data.eventDate.month=='november' ? 'selected' : '' %>>NOV</option>
+              <option value="december" <%=data.eventDate.month=='december' ? 'selected' : '' %>>DEC</option>
+            </select>
+            <select id="event-day">
+              <% for(i=1;i<32;i++){ %>
+              <option value=<%=i %>
+                <%= data.eventDate.day==i? 'selected' : '' %> >
+                <%= i %>
+              </option>
+              <% } %>
+            </select>
+            <select id="event-year">
+              <% for(i=2018;i<2030;i++){ %>
+              <option value=<%=i %>
+                <%= data.eventDate.year==i? 'selected' : '' %> >
+                <%= i %>
+              </option>
+              <% } %>
+            </select>
+          </div>
+          <div>
+            <div class="event-creator-title">Event Start Time</div>
+            <select id="event-time-start">
+              <option value="12:00">12:00</option>
+              <option value="12:00">12:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:00">11:30</option>
+              <option value="10:00">10:00</option>
+              <option value="10:00">10:30</option>
+              <option value="09:00">09:00</option>
+              <option value="09:00">09:30</option>
+              <option value="08:00">08:00</option>
+              <option value="08:00">08:30</option>
+              <option value="07:00">07:00</option>
+              <option value="07:00">07:30</option>
+              <option value="06:00">06:00</option>
+              <option value="06:00">06:30</option>
+              <option value="05:00">05:00</option>
+              <option value="05:00">05:30</option>
+              <option value="04:00">04:00</option>
+              <option value="04:00">04:30</option>
+              <option value="03:00">03:00</option>
+              <option value="03:00">03:30</option>
+              <option value="02:00">02:00</option>
+              <option value="02:00">02:30</option>
+              <option value="01:00">01:00</option>
+              <option value="01:00">01:30</option>
+            </select>
+            <select id="time-of-day-start">
+              <option value="am" <%=data.eventTime.start.timeOfDay=='am' ? 'selected' : '' %> >AM</option>
+              <option value="pm" <%=data.eventTime.start.timeOfDay=='pm' ? 'selected' : '' %> >PM</option>
+            </select>
+          </div>
+          <div>
+            <div class="event-creator-title">Event Ending Time</div>
+            <select id="event-time-end">
+              <option value="12:00">12:00</option>
+              <option value="12:00">12:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:00">11:30</option>
+              <option value="10:00">10:00</option>
+              <option value="10:00">10:30</option>
+              <option value="09:00">09:00</option>
+              <option value="09:00">09:30</option>
+              <option value="08:00">08:00</option>
+              <option value="08:00">08:30</option>
+              <option value="07:00">07:00</option>
+              <option value="07:00">07:30</option>
+              <option value="06:00">06:00</option>
+              <option value="06:00">06:30</option>
+              <option value="05:00">05:00</option>
+              <option value="05:00">05:30</option>
+              <option value="04:00">04:00</option>
+              <option value="04:00">04:30</option>
+              <option value="03:00">03:00</option>
+              <option value="03:00">03:30</option>
+              <option value="02:00">02:00</option>
+              <option value="02:00">02:30</option>
+              <option value="01:00">01:00</option>
+              <option value="01:00">01:30</option>
+            </select>
+            <select id="time-of-day-end">
+              <option value="am" <%=data.eventTime.end.timeOfDay=='am' ? 'selected' : '' %>>AM</option>
+              <option value="pm" <%=data.eventTime.end.timeOfDay=='pm' ? 'selected' : '' %> >PM</option>
+            </select>
+          </div>
+        </div>
+        <!-- END OF EVENT TIME-->
+
+        <div class="event-creator-title">Event Tags</div>
+        <p class="create-event-instructions">Enter a tag name then press 'Enter' to add a tag for this event</p>
+        <div id="event-tags">
+          <div class="tags">
+            <% data.eventTags.forEach((tag)=>{ 
+              if(!tag) return;%>
+            <div class="event-tag edit-tags">
+              <%- '#'+tag.name %><span><i class="fas fa-times"></i></span>
+            </div>
+            <% }) %>
+          </div>
+          <p class="tag-status create-event-instructions">5 tags to go</p>
+          <input type="text" id="event-tag-text" placeholder="Enter tag text, max 5 tags">
+        </div>
+        <div>
+          <div class="event-creator-title">Ticket Breakdown</div>
+          <div id="add-field" onclick="ticketTemplate()"><i class="fas fa-plus"></i> Add Ticket</div>
+          <div class="ticket-container"></div>
+        </div>
+
+        <div>
+          <div class="event-creator-title">Enable RSVP</div>
+          <label class="switch-toggle">
+            <input type="checkbox" id='rsvp-check' <%=data.isRsvpEnabled===true?'checked':''%>>
+            <span class="switch-slider"></span>
+            <span class="switch-text"> Enable RSVP
+          </label>
+          <span style='margin:5px 0px;display:inline-block;'>
+            <%- "("+data.rsvpCount +"/"+data.rsvpTotal+" available)" %>
+          </span>
+          <input type='number' id='rsvp-limit' placeholder="RSVP new limit">
+        </div>
+        <div class="event-creator-title">Select Currency</div>
+        <div>
+          <select id="currency-type">
+            <option value="usd" <%=data.eventCurrency=='usd' ? 'selected' : '' %>>USD</option>
+            <option value="cad" <%=data.eventCurrency=='cad' ? 'selected' : '' %>>CAD</option>
+          </select>
+        </div>
+        <button class="btn btn-l" id="update-event">Update</button>
+      </div>
+    </div>
+  </div>
+  <!-- END OF BODY -->
+
+  <!--FOOTER-->
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+  <!--END FOOTER-->
+  <script>
+    wsyJA.init('#event-description');
+
+    function ticketTemplate() {
+      let container = $('.ticket-container');
+      let newRow = $(
+        `<div>
+          <input type="text" class="custom-ticket-name" placeholder="Enter ticket type name">
+            <textarea class="custom-ticket-description" placeholder="Enter ticket decription"></textarea>
+          </div>
+          <div><input type="number" class="custom-ticket-quantity" placeholder="# of tickets available" min="0" max="10000"></div>
+          <div><input type="number" class="custom-ticket-price"  min="0.00" max="10000.00" id="general-ticket-price" placeholder="$00.00"></div>`
+      );
+      container.append(newRow);
+
+    }
+  </script>
+</body>
+
+</html>

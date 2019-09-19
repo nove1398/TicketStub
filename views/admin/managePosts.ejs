@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= pageTitle %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/admin.css" />
+    <script src="/js/admin.js"></script>
+</head>
+<body>
+    <!-- NAVBAR TOP-->
+    <header class="admin-header-nav">
+        <div><i class="fas fa-home"></i><a href="/admins">  IslandStub Admin</a></div>
+        <div>
+            <ul>
+                <li><i class="far fa-user-circle"></i></li>
+                <li><%= userName.first + ' ' + userName.last%></li>
+               
+            </ul>
+        </div>
+    </header>
+    <div class="admin-body-container">
+        <!-- MAIN BODY-->
+        <section class="admin-main-body">
+                    <div class="admin-info-container">
+                        <div class="admin-info-title">User Statistics</div>
+                        <div class="admin-info-body">
+                            <p>Total Users: <%= userCount %></p>
+                            <canvas id="users-piechart" width="100%" height="200"></canvas>
+                        </div>
+                    </div>
+                    <div class="admin-info-container">
+                        <div class="admin-info-title">Event Statistics</div>
+                        <div class="admin-info-body">
+                            <img src="" alt="maybe_image">
+                            <p>Total Events Posted: <%= eventCount %></p>
+                            <p>Total Active Events: <%= eventCount %></p>
+                            <p>Most Viewed Event: <%= eventCount %></p>
+                            <canvas id="event-views-piechart" width="100%" height="200"></canvas>
+                        </div>
+                    </div>
+                    <div class="admin-info-container">
+                        <div class="admin-info-title">###</div>
+                        <div class="admin-info-body">
+                            <img src="" alt="maybe_image">
+                            <p>######$$$$$$$$$</p>
+                        </div>
+                    </div>
+        </section>
+            <!-- SIDE NAVBAR-->
+            <input type="checkbox" name="toggle" id="toggle">
+            <section class="admin-side-nav">
+                    <label for="toggle">
+                        <span></span>
+                        <span></span>
+                    </label>
+                    <div class="admin-side-nav-title">Navigation</div>
+                    <% include ../partials/adminNav %>
+            </section>
+         
+    </div>
+    
+</body>
+</html>

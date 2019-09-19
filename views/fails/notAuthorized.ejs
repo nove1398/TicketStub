@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body>
+  <!--HEADER CONTAINER-->
+  <header>
+    <% include ../partials/header %>
+    
+  </header>
+  <!-- END HEADER CONTAINER-->
+
+  <div class="banner-container">
+    <div></div>
+  </div>
+
+  <!-- MAIN CONTAINER FOR BODY -->
+  <div class="main-body-container">
+    <div class="login-page-container">
+        <h2>Login</h2>
+        <h3><%= typeof msg!=='undefined'? msg : '' %></h3>
+      <div>
+        <input type="email" placeholder="Email" id="username">
+        <input type="password" placeholder="Password" id="password">
+      </div>
+      <p>No account? <a href="/register">Register here</a></p>
+      <div class="btn btn-l" id="submit-login">Login</div>
+    </div>
+  </div>
+  <!-- END OF BODY -->
+
+  <!--FOOTER-->
+  <footer>
+        <% include ../partials/footer %>
+  </footer>
+  <!--END FOOTER-->
+</body>
+
+</html>

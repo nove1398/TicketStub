@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body>
+  <!--HEADER CONTAINER-->
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <!-- END HEADER CONTAINER-->
+
+  <div class="banner-container">
+    <div></div>
+  </div>
+
+  <!-- MAIN CONTAINER FOR BODY -->
+  <div class="main-body-container">
+    <div class="profile-container">
+      <div>
+        <h2>Event History</h2>
+        <div>
+
+        </div>
+      </div>
+      <br>
+      <div>
+        <a href="/sellerinfo" class="seller-banking-update">Update banking information</a>
+        <a href="/checkorder" class="seller-banking-update">Check order numbers</a>
+      </div>
+      <br>
+      <% if(eventDocs.length < 1){ %>
+      <div class="event-history-status-container">
+        <p class="event-history-status">
+          You currently have no events listed,if you wish to create an event <a href="/creator">Click here</a>
+        </p>
+      </div>
+      <%}else{%>
+      <div class="purchase-history-list">
+        <% eventDocs.forEach(function(item,index){ %>
+        <div class="event-history-container" data-id=<%=item._id %> >
+          <span></span>
+          <div class="event-history-details-container">
+            <div class="event-history-title">
+              <%= item.eventName %>
+            </div>
+            <div class="event-history-date">
+              <%= item.fixedDate %>
+            </div>
+          </div>
+          <ul class="event-history-controls" id="<%= item._id %>">
+            <li title="Edit event"><a href="/edit/<%= item._id %>"><i class="fas fa-pencil-alt"></i></a></li>
+            <li title="View statistics"><a href="/manage/<%= item._id %>"><i class="fas fa-chart-pie"></i></a></li>
+            <li title="Delete event" class="delete-event-seller"><i class="fas fa-trash-alt"></i></li>
+            <li title="Deactivate event" class="deactivate-event-seller <%- item.isActive?'active-event' : 'inactive-event' %> "><i
+                class="fas fa-power-off"></i></li>
+          </ul>
+        </div>
+        <% }); %>
+      </div>
+      <% } %>
+    </div>
+  </div>
+  <!-- END OF BODY -->
+
+  <!--FOOTER-->
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+  <!--END FOOTER-->
+</body>
+
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body>
+  <!--HEADER CONTAINER-->
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <!-- END HEADER CONTAINER-->
+
+  <div class="banner-container">
+    <div></div>
+  </div>
+
+  <!-- MAIN CONTAINER FOR BODY -->
+  <div class="main-body-container">
+    <div class="event-create-container">
+      <div>
+        <h2>Create An Event</h2>
+        <div id="creation-errors"></div>
+        <div class="event-creator-title">Event Basics</div>
+        <input type="text" placeholder="Name of event" id="event-name" value="tttt">
+        <input type="text" placeholder="Organizer Name" id="event-organizer-name" value="tttt">
+        <div class="event-creator-title">Event Description</div>
+        <div id="event-description"></div>
+        <div class="event-creator-title">Location</div>
+        <select id="event-country">
+          <option value="">Select Country</option>
+          <option value="BS">Bahamas</option>
+          <option value="BB">Barbados</option>
+          <option value="VG">British Virgin Islands</option>
+          <option value="CA">Canada</option>
+          <option value="CI">Cayman Islands</option>
+          <option value="CU">Cuba</option>
+          <option value="DM">Dominica</option>
+          <option value="JM">Jamaica</option>
+          <option value="MX">Mexico</option>
+          <option value="KN">St. Kitts & Nevis</option>
+          <option value="LC">St. Lucia</option>
+          <option value="TC">Turks and Caicos Islands</option>
+          <option value="TT">Trinidad & Tobago</option>
+          <option value="US">United States of America</option>
+        </select>
+        <input type="text" placeholder="Address" id="event-address" onfocus="geolocate()" >
+        <input type="text" placeholder="City" id="event-city" >
+        <input type="text" placeholder="State/Province" id="state" >
+        <input type="text" placeholder="Zip/Postal code" id="zipcode" >
+
+        <!--EVENT TIME SECTION-->
+        <div class="event-time-settings">
+          <div>
+            <div class="event-creator-title">Event Date</div>
+            <select name="event-month" id="event-month">
+              <option value="january">JAN</option>
+              <option value="february">FEB</option>
+              <option value="march">MAR</option>
+              <option value="april">APR</option>
+              <option value="may">MAY</option>
+              <option value="june">JUN</option>
+              <option value="july">JUL</option>
+              <option value="august">AUG</option>
+              <option value="september">SEP</option>
+              <option value="october">OCT</option>
+              <option value="november">NOV</option>
+              <option value="december">DEC</option>
+            </select>
+            <select id="event-day">
+              <% for(i=1;i<32;i++){ %>
+              <option value=<%=i %>>
+                <%= i %>
+              </option>
+              <% } %>
+            </select>
+            <select id="event-year">
+              <% for(i=2019;i<2030;i++){ %>
+              <option value=<%=i %>>
+                <%= i %>
+              </option>
+              <% } %>
+            </select>
+          </div>
+          <div>
+            <div class="event-creator-title">Event Start Time</div>
+            <select id="event-time-start">
+              <option value="12:00">12:00</option>
+              <option value="12:00">12:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:00">11:30</option>
+              <option value="10:00">10:00</option>
+              <option value="10:00">10:30</option>
+              <option value="09:00">09:00</option>
+              <option value="09:00">09:30</option>
+              <option value="08:00">08:00</option>
+              <option value="08:00">08:30</option>
+              <option value="07:00">07:00</option>
+              <option value="07:00">07:30</option>
+              <option value="06:00">06:00</option>
+              <option value="06:00">06:30</option>
+              <option value="05:00">05:00</option>
+              <option value="05:00">05:30</option>
+              <option value="04:00">04:00</option>
+              <option value="04:00">04:30</option>
+              <option value="03:00">03:00</option>
+              <option value="03:00">03:30</option>
+              <option value="02:00">02:00</option>
+              <option value="02:00">02:30</option>
+              <option value="01:00">01:00</option>
+              <option value="01:00">01:30</option>
+            </select>
+            <select id="time-of-day-start">
+              <option value="am">AM</option>
+              <option value="pm">PM</option>
+            </select>
+          </div>
+          <div>
+            <div class="event-creator-title">Event Ending Time</div>
+            <select id="event-time-end">
+              <option value="12:00">12:00</option>
+              <option value="12:00">12:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:00">11:30</option>
+              <option value="10:00">10:00</option>
+              <option value="10:00">10:30</option>
+              <option value="09:00">09:00</option>
+              <option value="09:00">09:30</option>
+              <option value="08:00">08:00</option>
+              <option value="08:00">08:30</option>
+              <option value="07:00">07:00</option>
+              <option value="07:00">07:30</option>
+              <option value="06:00">06:00</option>
+              <option value="06:00">06:30</option>
+              <option value="05:00">05:00</option>
+              <option value="05:00">05:30</option>
+              <option value="04:00">04:00</option>
+              <option value="04:00">04:30</option>
+              <option value="03:00">03:00</option>
+              <option value="03:00">03:30</option>
+              <option value="02:00">02:00</option>
+              <option value="02:00">02:30</option>
+              <option value="01:00">01:00</option>
+              <option value="01:00">01:30</option>
+            </select>
+            <select id="time-of-day-end">
+              <option value="am">AM</option>
+              <option value="pm">PM</option>
+            </select>
+          </div>
+        </div>
+        <!-- END OF EVENT TIME-->
+        <div class="event-creator-title">Choose Event Flyer</div>
+        <p class="create-event-instructions">We recommend using at least a (1:2 ratio) image that's no larger than
+          10MB.</p>
+
+        <div id="event-image-dropper">
+          <label for="event-image">
+            Choose File
+            <input type="file" id="event-image" name="flyer">
+          </label>
+          Drop Photo Here Or
+          <img id="preview-image" src="/img/upload-flyer.png">
+        </div>
+
+        <div class="event-creator-title">Event Tags</div>
+        <p class="create-event-instructions">Enter a tag name then press 'Enter' to add a tag for this event</p>
+        <div id="event-tags">
+          <div class="tags"></div>
+          <p class="tag-status create-event-instructions">5 tags to go</p>
+          <input type="text" id="event-tag-text" placeholder="Enter tag text, max 5 tags">
+        </div>
+        <div class="event-creator-title">Ticket Breakdown</div>
+        <div id="add-field" onclick="ticketTemplate()"><i class="fas fa-plus"></i> Add Ticket</div>
+        <div class="ticket-container"></div>
+        <div>
+          <div class="event-creator-title">Enable RSVP</div>
+          <label class="switch-toggle">
+            <input type="checkbox" id='rsvp-check'>
+            <span class="switch-slider"></span>
+            <span class="switch-text"> Enable RSVP</span>
+          </label>
+          <input type='number' id='rsvp-limit' placeholder="RSVP number limit">
+        </div>
+        <div class="event-creator-title">Select Currency</div>
+        <select id="currency-type">
+          <option value="usd">USD</option>
+          <option value="cad">CAD</option>
+        </select>
+        <p><label class='checkbox-switch'>
+            I agree to the <a href="/terms" target="_blank" style="color:blue">terms
+              and conditions</a> of this site.
+            <input type="checkbox" id="terms-check">
+            <span class="checkbox-box"></span>
+          </label> </p>
+        <div class="btn btn-l disabled" id="submit-event">Upload</div>
+      </div>
+    </div>
+  </div>
+  <!-- END OF BODY -->
+
+  <!--FOOTER-->
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+  <!--END FOOTER-->
+  <script>
+    wsyJA.init("#event-description");
+
+    function ticketTemplate() {
+      let container = document.body.querySelector('.ticket-container');
+      let newRow =
+        `<div class="custom-ticket-block">
+            <div>
+              <input type="text" class="custom-ticket-name" placeholder="Enter ticket type name">
+              <div class="group-ticket-block">
+                <input type="number" class="custom-ticket-price"  min="0.00" max="10000.00" id="general-ticket-price" placeholder="Enter the dollar price. eg: 23.50">
+                <input type="number" class="custom-ticket-quantity" placeholder="# of purchasable tickets" min="0" max="10000">
+              </div>
+            </div>
+            <textarea class="custom-ticket-description" placeholder="Enter ticket decription"></textarea>
+          </div>`;
+      container.insertAdjacentHTML('beforeend', newRow);
+    }
+
+    /* <div style="overflow: hidden;" class="limited-ticket-container">
+              <div class="event-creator-title">Limit Ticket Selling Time</div>
+              <label class="switch-toggle">
+                <input type="checkbox" class='limited-check-toggle'>
+                <span class="switch-slider"></span>
+                <span class="switch-text"> Enable Limited Time</span>
+              </label>
+              <div class="group-ticket-block limited-ticket-data-block">
+                <h4>Start Date</h4>
+                <div type="text" name="" class="custom-ticket-limited-sale-time start-time" data-date="1" placeholder="---" ><i class="far fa-calendar-alt"></i><span></span></div>
+                <h4>End Date</h4>
+                <div type="text" name="" class="custom-ticket-limited-sale-time end-time" data-date="2" placeholder="---" ><i class="far fa-calendar-alt"></i><span></span></div>
+              </div>
+            </div>
+            */
+    //Called when api loaded
+    function initAutocomplete() {
+        // Create the autocomplete object, restricting the search predictions to
+        // geographical location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            document.getElementById('event-address'), {types: ['geocode']});
+
+        // Avoid paying for data that you don't need by restricting the set of
+        // place fields that are returned to just the address components.
+        autocomplete.setFields(['address_components']);
+
+        let componentForm = {
+                              street_number: 'event-address',
+                              route: 'event-address',
+                              locality: 'event-city',
+                              administrative_area_level_1: 'state',
+                              postal_code: 'zipcode'
+                            };
+        // When the user selects an address from the drop-down, populate the
+        // address fields in the form.
+        autocomplete.addListener('place_changed', (ev)=>{
+          for(let component in componentForm){
+            document.getElementById(componentForm[component]).value  = '';
+              //document.getElementById(componentForm[component]).disabled  = true;
+          }
+          let places = autocomplete.getPlace();
+          for(let k = 0;k<places.address_components.length;k++){
+            let place = places.address_components[k].types[0];
+            if (componentForm[place]) {
+              let val = places.address_components[k]['long_name'];
+              let fieldBox = document.getElementById(componentForm[place]);
+              fieldBox.value += " " + val;
+            }
+          }
+        });
+      }
+
+      function geolocate() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle(
+                {center: geolocation, radius: position.coords.accuracy});
+            autocomplete.setBounds(circle.getBounds());
+          });
+        }
+      }
+  </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwQTPw1GjehvJxkYECQCmiF7_8FEndY3o &libraries=places&callback=initAutocomplete" async defer></script>
+</body>
+
+</html>

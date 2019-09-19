@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <% include ../partials/adminHeader %>
+</head>
+<body>
+    <!-- NAVBAR TOP-->
+    <header class="admin-header-nav">
+        <div><i class="fas fa-home"></i><a href="/admins">  IslandStub Admin</a></div>
+        <div>
+            <ul>
+                <li><i class="far fa-user-circle"></i></li>
+                <li><%= userName.first + ' ' + userName.last%></li>
+               
+            </ul>
+        </div>
+    </header>
+    <div class="admin-body-container">
+        <!-- MAIN BODY-->
+        <% 
+            if(genderStats[0]._id.genderType == 'm'){
+                var males = genderStats[0]?genderStats[0].count : 0
+                var females = genderStats[1]?genderStats[1].count : 0
+            }else{
+                var males = genderStats[1]?genderStats[1].count : 0
+                var females = genderStats[0]?genderStats[0].count : 0
+            }
+             %>
+        <section class="admin-main-body">
+                    <div class="admin-info-container">
+                        <div class="admin-info-title">User Statistics</div>
+                        <div class="admin-info-body">
+                            <p>Total Users: <%= userCount %></p>
+                            <canvas id="users-piechart"></canvas>
+                            <div id="users-legend" class="legend"></div>
+                        </div>
+                    </div>
+                    <div class="admin-info-container">
+                        <div class="admin-info-title">Event Statistics</div>
+                        <div class="admin-info-body">
+                            <p>Total Events Posted: <%= eventCount %></p>
+                            <p>Total Active Events: <%= activeEvents %></p>
+                            <h3>Most Viewed Event</h3>
+                            <p><strong><%= popularEvent.eventName %></strong>(<%= popularEvent.eventViews%> page views)</p>
+                            <p>Last Viewed On: <%= popularEvent.lastViewed %></p>
+                            <p>Buy Tickets Clicked: <%= popularEvent.eventPurchaseClicks %></p>
+                            <canvas id="event-views-piechart"></canvas>
+                            <div id="events-legend" class="legend"></div>
+                        </div>
+                    </div>
+                    <div class="admin-info-container">
+                        <div class="admin-info-title">Sales Statistics</div>
+                        <div class="admin-info-body">
+                            <% if(orderStats){ %>
+                            <p>Highest ticket purchase: <%= orderStats.event.eventName +'($'+orderStats.ticketSum+')'%></p>
+                            <p>Highest tickets sold: <%= saleStats.event.eventName %></p>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="admin-info-container">
+                        <div class="admin-info-title">###</div>
+                        <div class="admin-info-body">
+                            <p>######$$$$$$$$$</p>
+                        </div>
+                    </div>
+        </section>
+            <!-- SIDE NAVBAR-->
+            <input type="checkbox" name="toggle" id="toggle">
+            <section class="admin-side-nav">
+                    <label for="toggle">
+                        <span></span>
+                        <span></span>
+                    </label>
+                    <div class="admin-side-nav-title">Navigation</div>
+                    <% include ../partials/adminNav %>
+            </section>
+         
+    </div>
+    
+    <script>
+
+        let eventCanvas = document.getElementById("event-views-piechart"); 
+        let usersCanvas = document.getElementById("users-piechart"); 
+        let legendUserEl = document.getElementById("users-legend"); 
+        let eventLegend = document.getElementById("events-legend"); 
+        let userData = {male: <%= males %>,female:<%= females %>};
+        let eventData = {"Total Events": <%= eventCount %>,"Total Active": <%= activeEvents %>};
+
+
+        var eventPieChat = new Piechart({canvas: eventCanvas,
+                                        data: eventData,
+                                        legend: eventLegend,
+                                        donutHoleSize: 0.3,
+                                        enableLabels: true});
+        var userPieChat = new Piechart({canvas: usersCanvas,
+                                        data: userData,
+                                        legend: legendUserEl,
+                                        donutHoleSize: 0.3,
+                                        enableLabels: true});
+        eventPieChat.draw();
+        userPieChat.draw();
+    </script>
+</body>
+</html>

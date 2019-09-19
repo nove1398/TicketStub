@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/adminHeader %>
+</head>
+<body>
+    <!-- NAVBAR TOP-->
+    <header class="admin-header-nav">
+        <div><i class="fas fa-home"></i><a href="/admins">  IslandStub Admin</a></div>
+        <div>
+            <ul>
+                <li><i class="far fa-user-circle"></i></li>
+                <li><%= userName.first + ' ' + userName.last%></li>
+               
+            </ul>
+        </div>
+    </header>
+    <div class="admin-body-container">
+        <!-- MAIN BODY-->
+        <section class="admin-main-body">
+                    <div class="admin-info-container">
+                        <div class="admin-info-title">Event Management</div>
+                        <div class="admin-search-body">
+                            <input type="text" id="event-searching" placeholder="Enter event name to search for">
+                           <div class="event-search-data">
+
+                           </div>
+                           
+                        </div>
+                    </div>
+
+                    
+        </section>
+            <!-- SIDE NAVBAR-->
+            <input type="checkbox" name="toggle" id="toggle">
+            <section class="admin-side-nav">
+                    <label for="toggle">
+                        <span></span>
+                        <span></span>
+                    </label>
+                    <div class="admin-side-nav-title">Navigation</div>
+                    <% include ../partials/adminNav %>
+            </section>
+         
+    </div>
+    
+</body>
+</html>

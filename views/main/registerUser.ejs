@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body>
+  <!--HEADER CONTAINER-->
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <!-- END HEADER CONTAINER-->
+
+  <div class="banner-container">
+    <div></div>
+  </div>
+
+  <!-- MAIN CONTAINER FOR BODY -->
+  <div class="main-body-container">
+    <div class="register-user-container">
+      <h2>Sign Up!</h2>
+      <div>
+        <div class="event-creator-title">Account Details</div>
+        <label for="email"><input type="email" autocomplete required placeholder="Email" id="email"></label>
+        <label for="password"><input type="password" required placeholder="Password (min. 5 characters)" id="password"></label>
+        <label for="fname"><input type="text" required placeholder="First Name" id="fname"></label>
+        <label for="lname"><input type="text" required placeholder="Last name" id="lname"></label>
+        <div class="event-creator-title">Gender</div>
+        <label for="gender">
+          <select name="gender" id="gender" required>
+            <option value="m">Male</option>
+            <option value="f">Female</option>
+          </select>
+        </label>
+        <div class="event-creator-title">Type of Account</div>
+        <label for="level">
+          <select id="level" required>
+            <option value="" selected>Choose Account Type</option>
+            <option value="3">Ticket Buyer</option>
+            <option value="2">Event Creator</option>
+          </select>
+        </label>
+      </div>
+      <div class="error-container"></div>
+      <input type="checkbox" name="accept-terms" id="accept-terms"> <label>Accept <a href="/terms" target="_blank"><strong>terms
+            and conditions</strong></a></label>
+      <div class="btn btn-flex" id="register-user">Sign Up</div>
+
+    </div>
+  </div>
+  <!-- END OF BODY -->
+
+  <!--FOOTER-->
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+  <!--END FOOTER-->
+</body>
+
+</html>

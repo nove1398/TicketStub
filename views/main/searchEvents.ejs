@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body>
+  <!--HEADER CONTAINER-->
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <!-- END HEADER CONTAINER-->
+
+  <div class="banner-container">
+    <div></div>
+  </div>
+
+  <!-- MAIN CONTAINER FOR BODY -->
+  <div class="main-body-container">
+
+    <div class="main-search-container">
+      <div class="search-container">
+        <input placeholder="Event name to search for" id="event-search-term">
+        <select id="event-search-location">
+          <option value="">Location</option>
+          <option value="BS">Bahamas</option>
+          <option value="BB">Barbados</option>
+          <option value="VG">British Virgin Islands</option>
+          <option value="CA">Canada</option>
+          <option value="CI">Cayman Islands</option>
+          <option value="CU">Cuba</option>
+          <option value="DM">Dominica</option>
+          <option value="MX">Mexico</option>
+          <option value="KN">St. Kitts & Nevis</option>
+          <option value="LC">St. Lucia</option>
+          <option value="TC">Turks and Caicos Islands</option>
+          <option value="TT">Trinidad & Tobago</option>
+          <option value="US">United States of America</option>
+        </select>
+        <div class="btn btn-m" id="search-events">Search</div>
+      </div>
+    </div>
+
+    <!-- EVENT RESULTS-->
+    <div id="search-event-status">...</div>
+    <div class="event-listing-container">
+      <% for(i=0;i< docCount;i++) { 
+            doc = records[i];%>
+      <div class="event-item-container">
+        <a href="eventPage.html">
+          <img src=<%=doc.eventFlyer? records[i].eventFlyer: "/img/black-logo.png" ; %>>
+        </a>
+        <div class="event-price">
+          <span>$
+            <%= typeof doc.ticketTypes[0] ==='undefined'?'Free':doc.ticketTypes[0].price %>
+        </div>
+        <div class="event-item-body">
+          <div class="event-item-description">
+            <%- doc.eventDescription; %>
+          </div>
+          <div class="event-actionbar">
+            <div class="tags">
+              <% for(k=0;k < doc.eventTags.length; k++){%>
+              <span class="event-tag">
+                <%= doc.eventTags[k].name %></span>
+              <% } %>
+            </div>
+            <div>
+              <i title="Share flyer" class="fas fa-share-alt"></i>
+              <i title="Save flyer" class="fas fa-bookmark"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
+
+    </div>
+    <!--END EVENT RESULTS-->
+  </div>
+  <!-- END OF BODY -->
+
+  <!--FOOTER-->
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+  <!--END FOOTER-->
+</body>
+
+</html>
