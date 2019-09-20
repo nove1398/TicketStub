@@ -1,14 +1,14 @@
 module.exports = {
     jwtSecret: function () {
-        return "Azp-Zfgt$jkLkopAzz_";
+        return "Azp";
     },
     stripeKey: () => {
-        return "sk_test_bbypaZSQ1gb9jl1a6dc3ZPM1"
-    }, //'sk_live_2VeOl9pnH0z8TehWKnjXOdKs';},
+        return "sk_test"
+    }, 
     mailData: () => {
         return {
-            pass: 'C@tsa2016',
-            user: 'support@islandstub.ca',
+            pass: 'pass',
+            user: 'uname',
             host: 'smtp.ipage.com'
         };
     }
